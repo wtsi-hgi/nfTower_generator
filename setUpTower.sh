@@ -12,6 +12,8 @@ twPath=$(eval echo ${TOWER_PATH})
 humgenId=$(eval echo ${HUMGEN_ID})
 humgenName="humgen"
 
+
+
 #ssh variables
 sshKeyComment="nextflow_tower"
 sshKeyName="$HOME/.ssh/nextflow_tower"
