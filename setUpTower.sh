@@ -5,7 +5,7 @@
 ############################
 
 #towerTOKEN
-source "/nfs/users/nfs_e/en6/bin/tower_auth.cfg"
+source "/software/hgi/installs/nf_tower/tower_auth.cfg"
 TW_TOKEN=$(eval echo ${TOWER_ACCESS_TOKEN})
 twPath=$(eval echo ${TOWER_PATH})
 
