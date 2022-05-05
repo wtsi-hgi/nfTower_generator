@@ -15,4 +15,4 @@ This script will:
 
 You can add more credentials from Tower GUI, and/or create new ComputeEnviroments. It's recomended to `clone` the default and modify what is needed.
 \
-To run the script just: `./setUpTower.sh`
+To run the script just: `./launcher`
