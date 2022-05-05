@@ -3,16 +3,16 @@
 ############################
 ##      VARIABLES        ###
 ############################
-
+TW_TOKEN=$1
+twPath=$2
+humgenId=$3
+hostName=$4
 #towerTOKEN
-source "/software/hgi/installs/nf_tower/tower_auth.cfg"
-TW_TOKEN=$(eval echo ${TOWER_ACCESS_TOKEN})
-twPath=$(eval echo ${TOWER_PATH})
+#TW_TOKEN=
+#twPath=
 
-humgenId=$(eval echo ${HUMGEN_ID})
+#humgenId=
 humgenName="humgen"
-
-
 
 #ssh variables
 sshKeyComment="nextflow_tower"
@@ -20,7 +20,7 @@ sshKeyName="$HOME/.ssh/nextflow_tower"
 authorizedKeys="$HOME/.ssh/authorized_keys"
 
 #compENV variables
-hostName=$(eval echo ${HOST_NAME})
+#hostName=
 headQueue="normal"
 computeQueue="normal"
 
