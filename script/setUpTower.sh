@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ############################
-##      VARIABLES        ###
+##      VARIABLES        ###
 ############################
 envToken=$1;
 envEndPoint=$2;
@@ -25,6 +25,7 @@ computeQueue="normal"
 echo "Check tower ENV"
 export TOWER_ACCESS_TOKEN=$envToken
 export TOWER_API_ENDPOINT=$envEndPoint
+
 $twPath/tw info
 
 
@@ -35,7 +36,7 @@ read -p "Username: (login user) i.e: 'en6' or 'ob1' : " userName
 read -p "workDir: (nextflow work dir path)`echo $'\n'         Is recommended something like: /lustre/\<team\>/$userName/work : `" workDir
 read -p "launchDir: (nextflow launch dir path)`echo $'\n'         Is recommended something like: /lustre/\<team\>/$userName/launch : `" launchDir
 
-## INITIALIZE
+## INITIALIZE
 userEmail=$userName"@sanger.ac.uk"
 
 workspaceName=$userName
@@ -79,7 +80,7 @@ old_stty_cfg=$(stty -g)
 stty raw -echo ; sshExist=$(head -c 1) ; stty $old_stty_cfg # Careful playing with stty
 if echo "$sshExist" | grep -iq "^y" ;then
     #define path to sshKy
-    read -n "Path to the private ssh: " sshAux
+    read -p "Path to the private ssh: " sshAux
     sshPath=$sshAux
 else
     # create credentials
