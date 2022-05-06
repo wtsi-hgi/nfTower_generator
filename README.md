@@ -15,17 +15,17 @@ This script will:
 
 You can add more credentials from Tower GUI, and/or create new ComputeEnviroments. It's recomended to `clone` the default and modify what is needed.
 \
-To run the script just: `./launcher` . This script will run the `setUpTower` placed in `/software/hgi/installs/nf_tower/`
+To run the script just: `./launcher` . This script will run `/software/hgi/installs/nf_tower/setUpTower.sh`
 
-All the operations are performed in `setUpTower.sh` but it is used the `launcher.sh` to keep the tokens hidden. 
-If you want to re-use this project, you can place your tokens and IDs in `setUpTower.sh` :
-```
-############################
-##      VARIABLES        ###
-############################
-TW_TOKEN=$1
-twPath=$2
-humgenId=$3
-hostName=$4
-```
-And run directly the `setUpTower.sh` instead of the `launcher`
+All the operations are performed in `/script/setUpTower.sh` but it is used the `launcher.sh` to keep the tokens hidden. 
+
+If you want to re-use this project, you can place your tokens and IDs in `/script/setUpTower.sh` :
+
+- `envToken` it reffers to `TOWER_ACCESS_TOKEN`
+- `envEndPoint` it reffers to `TOWER_API_ENDPOINT`
+- `twPath` it is the path to the `tw` binary
+- `humgenId` it is the `TOWER_WORKSPACE_ID`
+- `hostName` this variable refers to the `hostName` on the `COMPUTE ENV`
+
+
+And run directly the `/script/setUpTower.sh` instead of the `launcher`
