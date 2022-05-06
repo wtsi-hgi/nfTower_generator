@@ -3,9 +3,11 @@
 ############################
 ##      VARIABLES        ###
 ############################
-twPath=$1;
-humgenId=$2;
-hostName=$3;
+envToken=$1;
+envEndPoint=$2;
+twPath=$3;
+humgenId=$4;
+hostName=$5;
 
 humgenName="humgen"
 
@@ -21,6 +23,8 @@ computeQueue="normal"
 ###############
 # CHECK TW
 echo "Check tower ENV"
+export TOWER_ACCESS_TOKEN=$envToken
+export TOWER_API_ENDPOINT=$envEndPoint
 $twPath/tw info
 
 
