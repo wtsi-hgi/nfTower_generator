@@ -18,6 +18,12 @@ authorizedKeys="$HOME/.ssh/authorized_keys"
 headQueue="normal"
 computeQueue="normal"
 
+###############
+# CHECK TW
+echo "Check tower ENV"
+$twPath/tw info
+
+
 ############################
 # GRAB INFO
 read -p "Username: (login user) i.e: 'en6' or 'ob1' : " userName
