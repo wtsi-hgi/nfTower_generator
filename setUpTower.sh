@@ -3,15 +3,10 @@
 ############################
 ##      VARIABLES        ###
 ############################
-TW_TOKEN=$1
-twPath=$2
-humgenId=$3
-hostName=$4
-#towerTOKEN
-#TW_TOKEN=
-#twPath=
+twPath=$1;
+humgenId=$2;
+hostName=$3;
 
-#humgenId=
 humgenName="humgen"
 
 #ssh variables
@@ -20,7 +15,6 @@ sshKeyName="$HOME/.ssh/nextflow_tower"
 authorizedKeys="$HOME/.ssh/authorized_keys"
 
 #compENV variables
-#hostName=
 headQueue="normal"
 computeQueue="normal"
 
@@ -44,37 +38,56 @@ computeEnvName=$userName"_"$headQueue
 ############################
 
 # is the user already in the system ??
-read -p "Do you have already a user? [y/n]: " userExist
-if [[ $userExist == "n" || $userExist == "N" ]]; then
-# create user
+echo -n "Do you have already a user? [y/n]: "
+old_stty_cfg=$(stty -g)
+stty raw -echo ; userExist=$(head -c 1) ; stty $old_stty_cfg # Careful playing with stty
+if echo "$userExist" | grep -iq "^n" ;then
+    # create user
+    echo "Create a new user"
+    echo "$twPath/tw members add -u $userEmail -o $humgenId"
     $twPath/tw members add -u $userEmail -o $humgenId
 fi
 
 #create workspace
+echo "Create the workspace"
+echo "$twPath/tw workspaces add -o $humgenName -n $workspaceName -f $workspaceFullName"
 $twPath/tw workspaces add -o $humgenName -n $workspaceName -f $workspaceFullName
 
 #add user to workspaces
+echo "Add user to the workspace"
+echo "$twPath/tw  participants add -n $userEmail -t MEMBER -w $humgenName/$workspaceName"
 $twPath/tw  participants add -n $userEmail -t MEMBER -w $humgenName/$workspaceName
 
 #change role of user in the workspace
+echo "Change the role of the user in the workspace"
+echo "$twPath/tw participants update -n $userEmail -t MEMBER -r ADMIN -w $humgenName/$workspaceName"
 $twPath/tw participants update -n $userEmail -t MEMBER -r ADMIN -w $humgenName/$workspaceName
 
 #does the user have his own cred or we create it?
-read -p "Do you want to use your own credentials [y/n]: " sshExist
-if [[ $sshExist == "n" || $sshExist == "N" ]]; then
+echo -n "Do you want to use your own credentials [y/n]:  "
+old_stty_cfg=$(stty -g)
+stty raw -echo ; sshExist=$(head -c 1) ; stty $old_stty_cfg # Careful playing with stty
+if echo "$sshExist" | grep -iq "^y" ;then
+    #define path to sshKy
+    read -n "Path to the private ssh: " sshAux
+    sshPath=$sshAux
+else
     # create credentials
+    echo "Create ssh key"
+    echo "ssh-keygen -t ed25519 -C $sshKeyComment -f $sshKeyName -N \"\""
     ssh-keygen -t ed25519 -C $sshKeyComment -f $sshKeyName -N ""
 
     #add credential into autho
+    echo "Add credential to the autorizedKeys"
+    echo "$sshKeyName\".pub\" >> $authorizedKeys"
     cat $sshKeyName".pub" >> $authorizedKeys
 
     sshPath=$sshKeyName
-else
-    read -p "Path to the private ssh: " sshAux
-    sshPath=$sshAux
 fi
 
 #add credential into tower
+echo "Add credentials into tower"
+echo "$twPath/tw credentials add ssh -n $credentialName -w $humgenName/$workspaceName --key $sshPath"
 $twPath/tw credentials add ssh -n $credentialName -w $humgenName/$workspaceName --key $sshPath
 
 # create comp env JSON
@@ -103,6 +116,8 @@ JSON_STRING=$( jq -n \
 echo $JSON_STRING > compEnvTest   
 
 #-> import comp env
+echo "Import ComputeEnviroment into the workspace"
+echo "$twPath/tw compute-envs import -n $computeEnvName -w $humgenName/$workspaceName -c $credentialName compEnvTest"
 $twPath/tw compute-envs import -n $computeEnvName -w $humgenName/$workspaceName -c $credentialName compEnvTest
 
 #Clean stuff
