@@ -6,8 +6,7 @@
 envToken=$1;
 envEndPoint=$2;
 twPath=$3;
-humgenId=$4;
-hostName=$5;
+hostName=$4;
 
 humgenName="humgen"
 
@@ -42,8 +41,8 @@ function newUser() {
     # create user
     echo ""
     echo ">> Create a new user"
-    echo "$twPath/tw members add -u $userEmail -o $humgenId"
-    $twPath/tw members add -u $userEmail -o $humgenId
+    echo "$twPath/tw members add -u $userEmail -o $humgenName"
+    $twPath/tw members add -u $userEmail -o $humgenName
     echo ""
     echo ""
 }
