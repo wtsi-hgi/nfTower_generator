@@ -158,6 +158,26 @@ function run_all() {
 	compEnv
 }
 
+function info(){
+echo ""
+echo ""
+
+echo "Your data in the humGen Tower"
+echo "Email: $userEmail"
+echo "Your workspace is: $workspaceName"
+echo "A compute enviroment has been set with your credentials (ssh $credentialName) "
+echo "under the name: $computeEnvName"
+echo ""
+echo "You can start using Tower at:"
+echo "https://nf-tower.cellgeni.sanger.ac.uk"
+echo ""
+echo "You can find more info in the confluence page:"
+echo "https://confluence.sanger.ac.uk/display/HGI/Nextflow+Tower"
+
+echo ""
+echo ""
+}
+
 menu(){
 echo -ne "
 -*-* -*-* -*-* -*-* -*-* -*-* -*-* 
@@ -169,6 +189,7 @@ echo -ne "
 3) Generate ssh key credentials 
 4) Produce Compute Enviroment
 5) Run All
+6) Info
 0) Exit
 Choose an option: "
         read a
@@ -178,6 +199,7 @@ Choose an option: "
 	        3) sshKeyGen ; menu ;;
 	        4) compEnv ; menu ;;
 	        5) run_all ; menu ;;
+            6) info ; menu ;;
 		    0) exit 0 ;;
 		*) echo -e $red"Wrong option."$clear; WrongCommand;;
         esac
