@@ -31,9 +31,7 @@ The next option will show information about the account: userName, workspaceName
 
 You can add more credentials from Tower GUI, and/or create new ComputeEnviroments. It's recomended to `clone` the default and modify what is needed.
 \
-To run the script just: `./launcher` . This script will run `/software/hgi/installs/nf_tower/setUpTower.sh`
-
-All the operations are performed in `/script/setUpTower.sh` but it is used the `launcher.sh` to keep the tokens hidden. 
+To run the script just: `./launcher.sh` . This script will run `/software/hgi/installs/nf_tower/setUpTower.sh`
 
 If you want to re-use this project, you can place your tokens and IDs in `/script/setUpTower.sh` :
 - `envToken` it reffers to `TOWER_ACCESS_TOKEN`
@@ -41,4 +39,4 @@ If you want to re-use this project, you can place your tokens and IDs in `/scrip
 - `twPath` it is the path to the `tw` binary
 - `hostName` this variable refers to the `hostName` on the `COMPUTE ENV`
 
-And run directly the `/script/setUpTower.sh` instead of the `launcher`
+And run directly the `/script/setUpTower.sh` instead of the `launcher.sh`
