@@ -96,6 +96,8 @@ function sshKeyGen() {
         echo "$sshKeyName.pub >> $authorizedKeys"
         cat $sshKeyName.pub >> $authorizedKeys
 
+	chmod 600 $authorizedKeys
+	
         sshPath=$sshKeyName
     fi
     #add credential into tower
