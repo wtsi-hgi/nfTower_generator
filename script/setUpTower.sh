@@ -59,6 +59,13 @@ function userWorkspace() {
     echo "$twPath/tw  participants add -n $userEmail -t MEMBER -w $humgenName/$workspaceName"
     $twPath/tw  participants add -n $userEmail -t MEMBER -w $humgenName/$workspaceName
 
+    #add hgi_admin to workspace
+    echo ">> Add hgi_admin to the workspace"
+    echo "$twPath/tw  participants add -n hgi_admin -t TEAM -w $humgenName/$workspaceName"
+    $twPath/tw  participants add -n hgi_admin -t TEAM -w $humgenName/$workspaceName
+    echo "$twPath/tw participants update -n hgi_admin -t TEAM -r ADMIN -w $humgenName/$workspaceName"
+    $twPath/tw participants update -n hgi_admin -t TEAM -r ADMIN -w $humgenName/$workspaceName
+    
     #change role of user in the workspace
     echo ">> Change the role of the user in the workspace"
     echo "$twPath/tw participants update -n $userEmail -t MEMBER -r ADMIN -w $humgenName/$workspaceName"
