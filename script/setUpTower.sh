@@ -8,7 +8,7 @@ envEndPoint=$2;
 twPath=$3;
 hostName=$4;
 
-humgenName="humgen"
+humgenName="Sanger"
 
 #ssh variables
 sshKeyComment="nextflow_tower"
@@ -145,7 +145,7 @@ function compEnv() {
                         "headQueue" : $hq,
                         "computeQueue" : $cq,
                         "headJobOptions" : "-M 4000 -R \"select[mem>4000] rusage[mem=4000]\"",
-                        "preRunScript" : "export HTTP_PROXY=\"http://wwwcache.sanger.ac.uk:3128\"\\nexport HTTPS_PROXY=$HTTP_PROXY\\nexport NXF_OPTS=\"-Xmx8G\" \\nexport PATH=\"/software/singularity-v3.6.4/bin:/software/hgi/installs/nextflow_install:$PATH\""
+                        "preRunScript" : "export HTTP_PROXY=\"http://wwwcache.sanger.ac.uk:3128\"\nexport HTTPS_PROXY=$HTTP_PROXY\nexport NXF_OPTS=\"-Xmx8G\" \nexport PATH=\"/software/singularity-v3.6.4/bin:/software/hgi/installs/nextflow_install:$PATH\""
                         }')
     echo $JSON_STRING > compEnvTest   
 
@@ -174,11 +174,11 @@ echo ""
 echo "Your data in the humGen Tower"
 echo "Email: $userEmail"
 echo "Your workspace is: $workspaceName"
-echo "A compute enviroment has been set with your credentials (ssh $credentialName) "
+echo "A compute environment has been set with your credentials (ssh $credentialName) "
 echo "under the name: $computeEnvName"
 echo ""
 echo "You can start using Tower at:"
-echo "https://nf-tower.cellgeni.sanger.ac.uk"
+echo "https://tower.internal.sanger.ac.uk"
 echo ""
 echo "You can find more info in the confluence page:"
 echo "https://confluence.sanger.ac.uk/display/HGI/Nextflow+Tower"
