@@ -1,1 +1,1 @@
-/software/hgi/installs/nf_tower/launcher 
+/software/hgi/installs/nf_tower/launcher-internal

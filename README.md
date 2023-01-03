@@ -1,6 +1,6 @@
 # nfTower_generator
 
-The purpose of this script is to set up the enviroment in tower for a new user.
+The purpose of this script is to set up the environment in tower for a new user.
 
 To run the script you will need to change the permissions `chmod 770 launcher.sh` and run it with `./launcher.sh`. When the script starts, it will ask if it has captured correctly your username.
 `Is 'XXX' your Sanger user? [y/n]:` After it the menu will appear:
@@ -63,7 +63,7 @@ Path to the PRIVATE sshKey: ~/.ssh/nextflow_tower
 /tw credentials add ssh -n XXX_farm -w humgen/XXX --key /nfs/users/nfs_/XXX/.ssh/nextflow_tower
 ```
 
-* The fourth option will create the compute enviroment. To perform that operation, the script needs :
+* The fourth option will create the compute environment. To perform that operation, the script needs :
 - _workDir_ :  nextflow work dir path, i.e.: `/lustre/<Your Team>/work`
 - _launchDir_ :  nextflow launch dir path, i.e.: `/lustre/<Your Team>/launch`
 It's needed the user has write permission on that directory.
@@ -79,7 +79,7 @@ It's recommended something like: /lustre/<team>/XXX/launch : /lustre/<team>/XXX/
 /tw compute-envs import -n XXX_normal -w humgen/XXX -c XXX_farm compEnvTest
 ```
 
-* The option num 5 will run all the operations sequencially and perform all the tasks needed to have tower configured from scracth.
+* The option num 5 will run all the operations sequentially and perform all the tasks needed to have tower configured from scratch.
 
 * The next option will show information about the account: userName, workspaceName, credentials, url to tower and to the documentation.
 ```
@@ -97,7 +97,7 @@ You can find more info in the confluence page:
 https://confluence.sanger.ac.uk/display/HGI/Nextflow+Tower
 ```
 
-You can add more credentials from Tower GUI, and/or create new ComputeEnviroments. It's recomended to `clone` the default and modify what is needed.
+You can add more credentials from Tower GUI, and/or create new ComputeEnvironments. It's recommended to `clone` the default and modify what is needed.
 
 
 The `launcher.sh` will run `/software/hgi/installs/nf_tower/setUpTower.sh` but it is provided if it want to be reused with other parameters. If you want to re-use this project, you can place your tokens and IDs in `/script/setUpTower.sh` :
